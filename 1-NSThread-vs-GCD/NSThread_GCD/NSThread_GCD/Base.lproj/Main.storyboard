@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQ4-dn-JwV">
+                                <rect key="frame" x="20" y="144" width="374" height="187"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFg-PU-O5N">
+                                        <rect key="frame" x="25" y="22" width="137" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="137" id="EPH-J8-5sr"/>
+                                            <constraint firstAttribute="height" constant="44" id="qkM-xW-XKx"/>
+                                        </constraints>
+                                        <state key="normal" title="测试NSThread并发">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTestNSThread:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dAp-q6-wjq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUW-hj-a6t">
+                                        <rect key="frame" x="25" y="106" width="137" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="pqX-lG-zBX"/>
+                                            <constraint firstAttribute="width" constant="137" id="zc6-yM-Npa"/>
+                                        </constraints>
+                                        <state key="normal" title="测试GCD并发">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTestGCD:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mym-fx-OJG"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XV-Jr-gJN">
+                                        <rect key="frame" x="185" y="22" width="181" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pD-tb-00I">
+                                        <rect key="frame" x="185" y="106" width="181" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="0XV-Jr-gJN" firstAttribute="centerY" secondItem="MFg-PU-O5N" secondAttribute="centerY" id="115-8u-dNE"/>
+                                    <constraint firstItem="MFg-PU-O5N" firstAttribute="top" secondItem="JQ4-dn-JwV" secondAttribute="top" constant="22" id="G7A-1q-1Rz"/>
+                                    <constraint firstAttribute="height" constant="187" id="JOp-0D-rrq"/>
+                                    <constraint firstItem="0XV-Jr-gJN" firstAttribute="height" secondItem="MFg-PU-O5N" secondAttribute="height" id="Jkr-bC-bTZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="sUW-hj-a6t" secondAttribute="bottom" constant="37" id="K5Y-Uw-FCy"/>
+                                    <constraint firstItem="2pD-tb-00I" firstAttribute="height" secondItem="sUW-hj-a6t" secondAttribute="height" id="QJ4-Yh-5Fs"/>
+                                    <constraint firstItem="sUW-hj-a6t" firstAttribute="leading" secondItem="JQ4-dn-JwV" secondAttribute="leading" constant="25" id="Wea-k6-7rY"/>
+                                    <constraint firstAttribute="trailing" secondItem="2pD-tb-00I" secondAttribute="trailing" constant="8" id="eqE-OQ-8vY"/>
+                                    <constraint firstItem="MFg-PU-O5N" firstAttribute="leading" secondItem="JQ4-dn-JwV" secondAttribute="leading" constant="25" id="gt0-ES-IAI"/>
+                                    <constraint firstItem="2pD-tb-00I" firstAttribute="centerY" secondItem="sUW-hj-a6t" secondAttribute="centerY" id="tOH-Ad-fnw"/>
+                                    <constraint firstAttribute="trailing" secondItem="0XV-Jr-gJN" secondAttribute="trailing" constant="8" id="uEz-lk-zx5"/>
+                                    <constraint firstItem="0XV-Jr-gJN" firstAttribute="leading" secondItem="MFg-PU-O5N" secondAttribute="trailing" constant="23" id="v8a-xo-RSV"/>
+                                    <constraint firstItem="2pD-tb-00I" firstAttribute="leading" secondItem="sUW-hj-a6t" secondAttribute="trailing" constant="23" id="xWP-ma-W78"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基于WCDB进行100个并发，1000次数据库插入" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDd-wm-CMQ">
+                                <rect key="frame" x="20" y="62" width="359.5" height="74"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="loN-I0-Ft8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tDd-wm-CMQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="9Hp-Rd-qSb"/>
+                            <constraint firstItem="JQ4-dn-JwV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="D5Z-nZ-TpQ"/>
+                            <constraint firstItem="tDd-wm-CMQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="FTA-fD-QBb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tDd-wm-CMQ" secondAttribute="trailing" constant="34.5" id="UuP-Ri-nR7"/>
+                            <constraint firstItem="JQ4-dn-JwV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ldk-IJ-HC9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JQ4-dn-JwV" secondAttribute="trailing" constant="20" id="xvC-o0-CCY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="GCDLabel" destination="2pD-tb-00I" id="Czs-re-c1r"/>
+                        <outlet property="NSThreadLabel" destination="0XV-Jr-gJN" id="pnc-DU-s5M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
+        </scene>
+    </scenes>
+</document>
