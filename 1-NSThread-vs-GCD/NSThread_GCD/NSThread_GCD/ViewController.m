@@ -6,8 +6,30 @@
 //  Copyright © 2020 binart. All rights reserved.
 //
 
+#include <pthread.h>
+#include <mach/mach.h>
+
 #import "ViewController.h"
 #import "UserRepo.h"
+
+static int getThreadsCount() {
+    thread_array_t threadList;
+    mach_msg_type_number_t threadCount;
+    task_t task;
+
+    kern_return_t kernReturn = task_for_pid(mach_task_self(), getpid(), &task);
+    if (kernReturn != KERN_SUCCESS) {
+        return -1;
+    }
+
+    kernReturn = task_threads(task, &threadList, &threadCount);
+    if (kernReturn != KERN_SUCCESS) {
+        return -1;
+    }
+    vm_deallocate (mach_task_self(), (vm_address_t)threadList, threadCount * sizeof(thread_act_t));
+
+    return threadCount;
+}
 
 @interface ViewController ()
 
@@ -16,6 +38,8 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *NSThreadLabel;
 @property (nonatomic, weak) IBOutlet UILabel *GCDLabel;
+
+@property (nonatomic, weak) IBOutlet UILabel *GCDThreadsCountLabel;
 
 @end
 
@@ -111,6 +135,54 @@
         
         self.GCDLabel.text = [NSString stringWithFormat:@"耗时 %@ s", @((long)([[NSDate new] timeIntervalSince1970] - start))];
     });
+}
+
+// 讨论不合理的线程使用：https://juejin.cn/post/6844904122248855560
+//https://juejin.cn/post/6844904193908539405
+// https://juejin.cn/post/6844903902408622087
+//https://xiaozhuanlan.com/topic/2847503196
+- (IBAction)onTestMultiGCDQueue:(id)sender {
+    // 测试block
+
+    __unused void (^testBlock)(void) = ^(void) {
+        sleep(300); // 休眠 5 分钟
+    };
+    
+    int i = 0;
+    
+    // 队列 1
+    dispatch_queue_t queue1 = dispatch_queue_create("queue1", DISPATCH_QUEUE_CONCURRENT);
+    for (; i < 64; i++) {
+        dispatch_async(queue1, testBlock);
+    }
+    
+    sleep(2);
+    
+    self.GCDThreadsCountLabel.text = [NSString stringWithFormat:@"线程数量 1：%@", @(getThreadsCount())];
+    
+    // 队列 2
+    i = 0;
+    dispatch_queue_t queue2 = dispatch_queue_create("queue2", DISPATCH_QUEUE_CONCURRENT);
+    for (; i < 64; i++) {
+        dispatch_async(queue2, testBlock);
+    }
+    
+    sleep(2);
+    
+    self.GCDThreadsCountLabel.text = [NSString stringWithFormat:@"线程数量 2：%@", @(getThreadsCount())];
+    
+    
+    // 队列 3
+    i = 0;
+    dispatch_queue_t queue3 = dispatch_queue_create("queue3", DISPATCH_QUEUE_CONCURRENT);
+    for (; i < 64; i++) {
+        dispatch_async(queue3, testBlock);
+    }
+    
+    sleep(2);
+    
+    self.GCDThreadsCountLabel.text = [NSString stringWithFormat:@"线程数量 3：%@", @(getThreadsCount())];
+     
 }
 
 @end

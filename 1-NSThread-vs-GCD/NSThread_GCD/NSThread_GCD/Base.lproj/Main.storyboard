@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQ4-dn-JwV">
-                                <rect key="frame" x="20" y="144" width="374" height="187"/>
+                                <rect key="frame" x="20" y="144" width="374" height="258"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFg-PU-O5N">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFg-PU-O5N">
                                         <rect key="frame" x="25" y="22" width="137" height="44"/>
-                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="137" id="EPH-J8-5sr"/>
                                             <constraint firstAttribute="height" constant="44" id="qkM-xW-XKx"/>
@@ -32,9 +34,9 @@
                                             <action selector="onTestNSThread:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dAp-q6-wjq"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUW-hj-a6t">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUW-hj-a6t">
                                         <rect key="frame" x="25" y="106" width="137" height="44"/>
-                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="pqX-lG-zBX"/>
                                             <constraint firstAttribute="width" constant="137" id="zc6-yM-Npa"/>
@@ -44,6 +46,20 @@
                                         </state>
                                         <connections>
                                             <action selector="onTestGCD:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mym-fx-OJG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzJ-S9-MuA">
+                                        <rect key="frame" x="25" y="190" width="137" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="EOr-IS-BlW"/>
+                                            <constraint firstAttribute="width" constant="137" id="fe8-LL-PrC"/>
+                                        </constraints>
+                                        <state key="normal" title="测试多GCD队列">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTestMultiGCDQueue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uHB-J9-HPZ"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XV-Jr-gJN">
@@ -58,19 +74,33 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNS-ZP-fK4">
+                                        <rect key="frame" x="185" y="202" width="181" height="20.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="181" id="NRD-ao-s7R"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstItem="0XV-Jr-gJN" firstAttribute="centerY" secondItem="MFg-PU-O5N" secondAttribute="centerY" id="115-8u-dNE"/>
                                     <constraint firstItem="MFg-PU-O5N" firstAttribute="top" secondItem="JQ4-dn-JwV" secondAttribute="top" constant="22" id="G7A-1q-1Rz"/>
-                                    <constraint firstAttribute="height" constant="187" id="JOp-0D-rrq"/>
+                                    <constraint firstAttribute="height" constant="258" id="JOp-0D-rrq"/>
                                     <constraint firstItem="0XV-Jr-gJN" firstAttribute="height" secondItem="MFg-PU-O5N" secondAttribute="height" id="Jkr-bC-bTZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="sUW-hj-a6t" secondAttribute="bottom" constant="37" id="K5Y-Uw-FCy"/>
+                                    <constraint firstAttribute="bottom" secondItem="sUW-hj-a6t" secondAttribute="bottom" constant="108" id="K5Y-Uw-FCy"/>
+                                    <constraint firstItem="fNS-ZP-fK4" firstAttribute="leading" secondItem="UzJ-S9-MuA" secondAttribute="trailing" constant="23" id="M8o-Qx-bpl"/>
                                     <constraint firstItem="2pD-tb-00I" firstAttribute="height" secondItem="sUW-hj-a6t" secondAttribute="height" id="QJ4-Yh-5Fs"/>
                                     <constraint firstItem="sUW-hj-a6t" firstAttribute="leading" secondItem="JQ4-dn-JwV" secondAttribute="leading" constant="25" id="Wea-k6-7rY"/>
+                                    <constraint firstItem="fNS-ZP-fK4" firstAttribute="centerY" secondItem="UzJ-S9-MuA" secondAttribute="centerY" id="YQg-sR-Se2"/>
                                     <constraint firstAttribute="trailing" secondItem="2pD-tb-00I" secondAttribute="trailing" constant="8" id="eqE-OQ-8vY"/>
                                     <constraint firstItem="MFg-PU-O5N" firstAttribute="leading" secondItem="JQ4-dn-JwV" secondAttribute="leading" constant="25" id="gt0-ES-IAI"/>
+                                    <constraint firstItem="UzJ-S9-MuA" firstAttribute="top" secondItem="sUW-hj-a6t" secondAttribute="bottom" constant="40" id="hbC-Ic-pfg"/>
+                                    <constraint firstItem="UzJ-S9-MuA" firstAttribute="leading" secondItem="sUW-hj-a6t" secondAttribute="leading" id="k7R-WH-hjP"/>
                                     <constraint firstItem="2pD-tb-00I" firstAttribute="centerY" secondItem="sUW-hj-a6t" secondAttribute="centerY" id="tOH-Ad-fnw"/>
+                                    <constraint firstItem="fNS-ZP-fK4" firstAttribute="height" secondItem="UzJ-S9-MuA" secondAttribute="height" multiplier="0.465909" id="u5t-YO-QQE"/>
                                     <constraint firstAttribute="trailing" secondItem="0XV-Jr-gJN" secondAttribute="trailing" constant="8" id="uEz-lk-zx5"/>
                                     <constraint firstItem="0XV-Jr-gJN" firstAttribute="leading" secondItem="MFg-PU-O5N" secondAttribute="trailing" constant="23" id="v8a-xo-RSV"/>
                                     <constraint firstItem="2pD-tb-00I" firstAttribute="leading" secondItem="sUW-hj-a6t" secondAttribute="trailing" constant="23" id="xWP-ma-W78"/>
@@ -86,7 +116,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tDd-wm-CMQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="9Hp-Rd-qSb"/>
                             <constraint firstItem="JQ4-dn-JwV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="D5Z-nZ-TpQ"/>
@@ -95,10 +126,10 @@
                             <constraint firstItem="JQ4-dn-JwV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ldk-IJ-HC9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JQ4-dn-JwV" secondAttribute="trailing" constant="20" id="xvC-o0-CCY"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="GCDLabel" destination="2pD-tb-00I" id="Czs-re-c1r"/>
+                        <outlet property="GCDThreadsCountLabel" destination="fNS-ZP-fK4" id="Sz3-pz-hWY"/>
                         <outlet property="NSThreadLabel" destination="0XV-Jr-gJN" id="pnc-DU-s5M"/>
                     </connections>
                 </viewController>
@@ -107,4 +138,15 @@
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
