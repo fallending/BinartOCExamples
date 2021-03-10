@@ -152,7 +152,7 @@ static int getThreadsCount() {
     
     // 队列 1
     dispatch_queue_t queue1 = dispatch_queue_create("queue1", DISPATCH_QUEUE_CONCURRENT);
-    for (; i < 64; i++) {
+    for (; i < 50; i++) {
         dispatch_async(queue1, testBlock);
     }
     
@@ -163,7 +163,7 @@ static int getThreadsCount() {
     // 队列 2
     i = 0;
     dispatch_queue_t queue2 = dispatch_queue_create("queue2", DISPATCH_QUEUE_CONCURRENT);
-    for (; i < 64; i++) {
+    for (; i < 50; i++) {
         dispatch_async(queue2, testBlock);
     }
     
@@ -175,7 +175,7 @@ static int getThreadsCount() {
     // 队列 3
     i = 0;
     dispatch_queue_t queue3 = dispatch_queue_create("queue3", DISPATCH_QUEUE_CONCURRENT);
-    for (; i < 64; i++) {
+    for (; i < 50; i++) {
         dispatch_async(queue3, testBlock);
     }
     
@@ -183,6 +183,15 @@ static int getThreadsCount() {
     
     self.GCDThreadsCountLabel.text = [NSString stringWithFormat:@"线程数量 3：%@", @(getThreadsCount())];
      
+    // 问题 1: 如果此刻，通过Thread创建线程呢？应该会ThreadsCount++
+//    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+//    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC, leewayInSeconds * NSEC_PER_SEC);
+//    dispatch_source_set_event_handler(timer, ^{
+//        //
+//    });
+//    dispatch_resume(timer);
+    
+    // 猜测：queue 的执行过程是否就是：Thread-Runloop-EventDriven？？最好 Thread和GCD两边都看一下
 }
 
 @end
